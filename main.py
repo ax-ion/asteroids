@@ -27,7 +27,6 @@ def main():
     Shot.containers = (shots, updatable, drawable)
     player = Player(x,y)
     asteroid_field = AsteroidField()
-
     
 
     while running:
@@ -43,6 +42,11 @@ def main():
                 log_event("player_hit")
                 print("Game over!")
                 sys.exit()
+            for s in shots:
+                if a.collides_with(s):
+                    log_event("asteroid_shot")
+                    a.kill()
+                    s.kill()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
